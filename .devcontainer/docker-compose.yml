@@ -1,0 +1,25 @@
+//.devcontainer/docker-compose.yml
+version: '3.8'
+
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/php:1-8.2
+    command: sleep infinity
+    volumes:
+      - ../..:/workspaces:cached
+    network_mode: service:db
+
+  db:
+    image: mariadb:10.4
+    restart: unless-stopped
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: bemuse
+      MYSQL_USER: bemuse
+      MYSQL_PASSWORD: secret
+    network_mode: service:app
+
+volumes:
+  mariadb-data:
