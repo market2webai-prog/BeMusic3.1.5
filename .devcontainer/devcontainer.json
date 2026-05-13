@@ -1,0 +1,14 @@
+//.devcontainer/devcontainer.json
+{
+	"name": "PHP & MariaDB",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"forwardPorts": [8000, 3306],
+	"portsAttributes": {
+		"8000": {
+			"label": "Application",
+			"onAutoForward": "notify"
+		}
+	}
+}
